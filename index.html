@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
-</head>
-<body>
-    <h1>Hello World</h1>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Graduation Invitation</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <main class="page">
+            <header class="hero">
+                <div class="hero-content">
+                    <h1 class="title">You're Invited</h1>
+                    <p class="subtitle">Please join me to celebrate my graduation</p>
+                    <p class="name">Ishan Patel</p>
+                </div>
+            </header>
+
+            <section class="card details" aria-labelledby="details-heading">
+                <h2 id="details-heading">Event Details</h2>
+                <ul>
+                    <li><strong>Date:</strong> June 15, 2026</li>
+                    <li><strong>Time:</strong> 4:00 PM — 7:00 PM</li>
+                    <li><strong>Venue:</strong> Riverside Hall, 123 College Ave, City</li>
+                </ul>
+                <p class="note">Formal attire. Refreshments will be provided.</p>
+
+                <div class="actions">
+                    <a class="btn primary" href="mailto:ishan03kp@gmail.com?subject=RSVP%20Graduation">RSVP via Email</a>
+                    <a class="btn outline" href="#more">More Info</a>
+                </div>
+            </section>
+
+            <section id="more" class="card schedule" aria-labelledby="schedule-heading">
+                <h2 id="schedule-heading">Schedule</h2>
+                <ol>
+                    <li>Arrival & Welcome — 4:00 PM</li>
+                    <li>Ceremony — 4:30 PM</li>
+                    <li>Photos & Refreshments — 6:00 PM</li>
+                </ol>
+            </section>
+
+            <section class="card location" aria-labelledby="location-heading">
+                <h2 id="location-heading">Location</h2>
+                <p>Riverside Hall is located near the main campus entrance. Parking available on-site.</p>
+                <!-- Simple embedded map placeholder; replace with real iframe if desired -->
+                <div class="map">Map placeholder</div>
+            </section>
+
+            <footer class="footer">
+                <p>Looking forward to celebrating with you — Ishan</p>
+                <p class="small">This is a sample invitation. Edit the text in <code>index.html</code> to customize.</p>
+            </footer>
+        </main>
+    </body>
 </html>
