@@ -47,10 +47,58 @@
                 <div class="map">Map placeholder</div>
             </section>
 
-            <footer class="footer">
-                <p>Looking forward to celebrating with you — Ishan</p>
-                <p class="small">This is a sample invitation. Edit the text in <code>index.html</code> to customize.</p>
-            </footer>
-        </main>
-    </body>
-</html>
+                <footer class="footer">
+                        <p>Looking forward to celebrating with you — Ishan</p>
+                        <p class="small">This is a sample invitation. Edit the text in <code>index.html</code> to customize.</p>
+                    </footer>
+                </main>
+
+                <!-- Entry popup modal -->
+                <div id="welcome-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
+                    <div class="modal-inner" role="document">
+                        <h3 id="welcome-title">Thank you</h3>
+                        <p>Thank you for reading this message</p>
+                        <div style="display:flex;justify-content:center;gap:0.5rem;margin-top:0.75rem;">
+                            <button id="modal-close" class="btn primary">Close</button>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const modal = document.getElementById('welcome-modal');
+                        const closeBtn = document.getElementById('modal-close');
+
+                        function openModal() {
+                            modal.removeAttribute('hidden');
+                            // small timeout to allow transition
+                            setTimeout(() => modal.classList.add('open'), 20);
+                            closeBtn.focus();
+                            document.body.style.overflow = 'hidden';
+                        }
+
+                        function closeModal() {
+                            modal.classList.remove('open');
+                            document.body.style.overflow = '';
+                            setTimeout(() => modal.setAttribute('hidden', ''), 200);
+                        }
+
+                        closeBtn.addEventListener('click', closeModal);
+                        // clicking the backdrop closes
+                        modal.addEventListener('click', function (e) {
+                            if (e.target === modal) closeModal();
+                        });
+                        // close on Escape
+                        document.addEventListener('keydown', function (e) {
+                            if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+                        });
+
+                        // Show immediately. If you'd rather show only once per visitor, use localStorage check.
+                        openModal();
+
+                        // Example: uncomment to show only once per browser
+                        // if (!localStorage.getItem('inviteSeen')) { openModal(); localStorage.setItem('inviteSeen', '1'); }
+                    });
+                </script>
+            </body>
+        </html>

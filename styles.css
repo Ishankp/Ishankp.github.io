@@ -65,3 +65,34 @@ body{
   .hero{box-shadow:none;background:#000;color:#fff}
   .btn, .map{display:none}
 }
+
+/* Modal / entry popup styles */
+.modal{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(2,6,23,0.55);
+  backdrop-filter:blur(3px) saturate(1.05);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .18s ease;
+  z-index:2000;
+}
+.modal.open{opacity:1;pointer-events:auto}
+.modal .modal-inner{
+  background:var(--card);
+  padding:1.1rem 1.25rem;
+  border-radius:10px;
+  max-width:440px;
+  width:min(92%,420px);
+  text-align:center;
+  box-shadow:0 18px 50px rgba(2,6,23,0.18);
+}
+.modal h3{margin:0;font-size:1.05rem}
+.modal p{margin:0.45rem 0 0;color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){
+  .modal{transition:none}
+}
