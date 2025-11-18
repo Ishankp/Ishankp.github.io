@@ -3,15 +3,19 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Graduation Invitation</title>
-        <link rel="stylesheet" href="styles.css" />
+        <title>UCF Graduation Invitation | Ishan Patel</title>
+        <!-- Link to external stylesheet -->
+        <link rel="stylesheet" href="styles.css" /> 
+        <!-- All styling has been moved to styles.css -->
     </head>
     <body>
         <main class="page">
             <header class="hero">
                 <div class="hero-content">
-                    <h1 class="title">You're Invited</h1>
+                    <h1 class="title">UCF - CHARGE ON!</h1>
                     <p class="subtitle">Please join me to celebrate my graduation</p>
+                    <!-- Added degree for clarity -->
+                    <p class="subtitle" style="margin-top: 0.1rem; opacity: 0.8;">Bachelor of Science in [Your Major] </p>
                     <p class="name">Ishan Patel</p>
                 </div>
             </header>
@@ -21,13 +25,14 @@
                 <ul>
                     <li><strong>Date:</strong> June 15, 2026</li>
                     <li><strong>Time:</strong> 4:00 PM — 7:00 PM</li>
-                    <li><strong>Venue:</strong> Riverside Hall, 123 College Ave, City</li>
+                    <!-- Updated location to be more general for a celebration, or you can update it to Addition Financial Arena if it's the official ceremony -->
+                    <li><strong>Venue:</strong> Riverside Hall, 123 College Ave, City (Celebration Dinner)</li>
                 </ul>
                 <p class="note">Formal attire. Refreshments will be provided.</p>
 
                 <div class="actions">
                     <a class="btn primary" href="mailto:ishan03kp@gmail.com?subject=RSVP%20Graduation">RSVP via Email</a>
-                    <a class="btn outline" href="#more">More Info</a>
+                    <a class="btn outline" href="#more">Celebration Schedule</a>
                 </div>
             </section>
 
@@ -47,58 +52,55 @@
                 <div class="map">Map placeholder</div>
             </section>
 
-                <footer class="footer">
-                        <p>Looking forward to celebrating with you — Ishan</p>
-                        <p class="small">This is a sample invitation. Edit the text in <code>index.html</code> to customize.</p>
-                    </footer>
-                </main>
+            <footer class="footer">
+                <p>Looking forward to celebrating with you — Ishan</p>
+                <p class="small">This invitation is themed for the University of Central Florida.</p>
+            </footer>
+        </main>
 
-                <!-- Entry popup modal -->
-                <div id="welcome-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
-                    <div class="modal-inner" role="document">
-                        <h3 id="welcome-title">Thank you</h3>
-                        <p>Thank you for reading this message</p>
-                        <div style="display:flex;justify-content:center;gap:0.5rem;margin-top:0.75rem;">
-                            <button id="modal-close" class="btn primary">Close</button>
-                        </div>
-                    </div>
+        <!-- Entry popup modal -->
+        <div id="welcome-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title" hidden>
+            <div class="modal-inner" role="document">
+                <h3 id="welcome-title">Charge On!</h3>
+                <p>You are invited to the graduation celebration of Ishan Patel.</p>
+                <div style="display:flex;justify-content:center;gap:0.5rem;margin-top:0.75rem;">
+                    <button id="modal-close" class="btn primary">View Invitation</button>
                 </div>
+            </div>
+        </div>
 
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        const modal = document.getElementById('welcome-modal');
-                        const closeBtn = document.getElementById('modal-close');
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const modal = document.getElementById('welcome-modal');
+                const closeBtn = document.getElementById('modal-close');
 
-                        function openModal() {
-                            modal.removeAttribute('hidden');
-                            // small timeout to allow transition
-                            setTimeout(() => modal.classList.add('open'), 20);
-                            closeBtn.focus();
-                            document.body.style.overflow = 'hidden';
-                        }
+                function openModal() {
+                    modal.removeAttribute('hidden');
+                    // small timeout to allow transition
+                    setTimeout(() => modal.classList.add('open'), 20);
+                    closeBtn.focus();
+                    document.body.style.overflow = 'hidden';
+                }
 
-                        function closeModal() {
-                            modal.classList.remove('open');
-                            document.body.style.overflow = '';
-                            setTimeout(() => modal.setAttribute('hidden', ''), 200);
-                        }
+                function closeModal() {
+                    modal.classList.remove('open');
+                    document.body.style.overflow = '';
+                    setTimeout(() => modal.setAttribute('hidden', ''), 200);
+                }
 
-                        closeBtn.addEventListener('click', closeModal);
-                        // clicking the backdrop closes
-                        modal.addEventListener('click', function (e) {
-                            if (e.target === modal) closeModal();
-                        });
-                        // close on Escape
-                        document.addEventListener('keydown', function (e) {
-                            if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
-                        });
+                closeBtn.addEventListener('click', closeModal);
+                // clicking the backdrop closes
+                modal.addEventListener('click', function (e) {
+                    if (e.target === modal) closeModal();
+                });
+                // close on Escape
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape' && !modal.hasAttribute('hidden')) closeModal();
+                });
 
-                        // Show immediately. If you'd rather show only once per visitor, use localStorage check.
-                        openModal();
-
-                        // Example: uncomment to show only once per browser
-                        // if (!localStorage.getItem('inviteSeen')) { openModal(); localStorage.setItem('inviteSeen', '1'); }
-                    });
-                </script>
-            </body>
-        </html>
+                // Show immediately.
+                openModal();
+            });
+        </script>
+    </body>
+</html>
