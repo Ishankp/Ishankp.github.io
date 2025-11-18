@@ -67,7 +67,12 @@ body{
 .btn.outline:hover{background:rgba(212,175,55,0.08);}
 
 .schedule li{margin-bottom:0.35rem}
-.map{height:140px;border-radius:8px;background:linear-gradient(90deg,var(--white), #fff8e6);display:flex;align-items:center;justify-content:center;color:var(--muted);margin-top:0.5rem; border: 1px solid var(--accent);}
+.map{border-radius:8px;background:linear-gradient(90deg,var(--white), #fff8e6);display:block;color:var(--muted);margin-top:0.5rem; border: 1px solid var(--accent);
+    /* Responsive embed: maintain aspect ratio and let iframe fill container */
+    aspect-ratio: 16 / 9;
+    overflow:hidden;
+}
+.map iframe{width:100%;height:100%;display:block;border:0}
 
 .footer{margin-top:1rem;text-align:center;color:var(--muted)}
 .footer .small{font-size:0.85rem}
