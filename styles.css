@@ -4,6 +4,7 @@
     --black:#0b0b0b; /* deep black for strong contrast */
     --white:#ffffff;
     --bg:#fcfbf9; /* subtle off-white page background */
+    --bg-end:#fffdf8; /* secondary gradient color for page background */
     --card:var(--white);
     --accent:var(--gold);
     --text-color:var(--black);
@@ -12,18 +13,29 @@
     --max-width:900px;
 }
 
+/* Dark theme overrides (applied when documentElement has data-theme="dark") */
+:root[data-theme="dark"]{
+    --bg:#070707;
+    --card:#0f0f10;
+    --text-color:#f5f3ef;
+    --muted:#bfb8a1;
+    --accent:#D4AF37; /* keep gold accent */
+    --bg-end:#050505;
+}
+
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
     margin:0;
     font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
-    background:linear-gradient(180deg,var(--bg),#fffdf8);
+    background:linear-gradient(180deg,var(--bg),var(--bg-end));
     color:var(--text-color);
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
     display:flex;
     justify-content:center;
     padding:2rem 1rem;
+    transition:background 240ms ease,color 200ms ease;
 }
 
 .page{
@@ -39,6 +51,7 @@ body{
     padding:3.25rem 2rem;
     text-align:center;
     box-shadow:0 8px 30px rgba(0,0,0,0.32);
+    position:relative;
 }
 .hero .title{
     font-size:2.4rem;
@@ -63,8 +76,12 @@ body{
 .btn.primary:hover{background:#b8912a}
 
 /* Outline Button: Black Text, Gold Border */
-.btn.outline{background:transparent;border:2px solid var(--accent);color:var(--black);}
+.btn.outline{background:transparent;border:2px solid var(--accent);color:var(--text-color);}
 .btn.outline:hover{background:rgba(212,175,55,0.08);}
+
+/* position the theme toggle in the hero */
+.hero-controls{position:absolute;top:12px;right:12px}
+.hero-controls .btn{padding:0.45rem 0.75rem;font-size:0.9rem}
 
 .schedule li{margin-bottom:0.35rem}
 .map{border-radius:8px;background:linear-gradient(90deg,var(--white), #fff8e6);display:block;color:var(--muted);margin-top:0.5rem; border: 1px solid var(--accent);
@@ -74,6 +91,51 @@ body{
 }
 .map iframe{width:100%;height:100%;display:block;border:0}
 
+/* Timeline styles for schedule */
+.timeline{
+    position:relative;
+    list-style:none;
+    padding:0 0 0 3rem;
+    margin:0;
+}
+.timeline::before{
+    content:'';
+    position:absolute;
+    left:1.25rem; /* center of line aligns with circles */
+    top:0.4rem;
+    bottom:0;
+    width:2px;
+    background:var(--accent);
+    opacity:0.16;
+}
+.timeline li{
+    position:relative;
+    padding:0.6rem 0 0.6rem 0.8rem;
+    display:block;
+}
+.timeline li::before{
+    content:'';
+    position:absolute;
+    left:0.95rem;
+    top:calc(50% - 7px);
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 6px rgba(212,175,55,0.06);
+    transform:translateY(-50%);
+}
+.tl-content{margin-left:1.6rem}
+.tl-event{font-weight:700;color:var(--text-color);}
+.tl-time{font-size:0.9rem;color:var(--muted);margin-top:0.25rem}
+
+@media (min-width:720px){
+    .timeline{padding-left:3.5rem}
+    .timeline::before{left:1.6rem}
+    .timeline li::before{left:1.3rem}
+    .tl-content{margin-left:1.9rem}
+}
+
 .footer{margin-top:1rem;text-align:center;color:var(--muted)}
 .footer .small{font-size:0.85rem}
 
@@ -81,6 +143,7 @@ body{
 @media (min-width:720px){
     .hero{padding:4rem 3rem;text-align:left}
     .hero .hero-content{max-width:60%}
+    .hero-controls{top:18px;right:28px}
 }
 
 @media print{

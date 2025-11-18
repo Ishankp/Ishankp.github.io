@@ -18,6 +18,9 @@
                     <p class="subtitle" style="margin-top: 0.1rem; opacity: 0.8;">Bachelor's Degree of Computer Science </p>
                     <p class="name">Ishan Patel</p>
                 </div>
+                <div class="hero-controls">
+                    <button id="theme-toggle" class="btn outline" aria-pressed="false" aria-label="Toggle dark mode">Dark</button>
+                </div>
             </header>
 
             <section class="card details" aria-labelledby="details-heading">
@@ -38,14 +41,44 @@
 
             <section id="more" class="card schedule" aria-labelledby="schedule-heading">
                 <h2 id="schedule-heading">Schedule</h2>
-                <ol>
-                    <li>Brunch @ Keke's — 10:45 AM</li>
-                    <li>Doors open for the ceremony — 1:00 PM</li>
-                    <li>Procession of Graduates into seats — 1:30 PM</li>
-                    <li>Commencement Ceremony Begins — 2:00 PM</li>
-                    <li>Ceremony Concludes — 4:00 PM</li>
-                    <li>Photos — 4:15 PM</li>
-                </ol>
+                <ul class="timeline" aria-label="Event timeline">
+                    <li>
+                        <div class="tl-content">
+                            <div class="tl-event">Brunch @ Keke's</div>
+                            <div class="tl-time">10:45 AM</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tl-content">
+                            <div class="tl-event">Doors open for the ceremony</div>
+                            <div class="tl-time">1:00 PM</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tl-content">
+                            <div class="tl-event">Procession of graduates into seats</div>
+                            <div class="tl-time">1:30 PM</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tl-content">
+                            <div class="tl-event">Commencement ceremony begins</div>
+                            <div class="tl-time">2:00 PM</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tl-content">
+                            <div class="tl-event">Ceremony concludes</div>
+                            <div class="tl-time">4:00 PM</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="tl-content">
+                            <div class="tl-event">Photos</div>
+                            <div class="tl-time">4:15 PM</div>
+                        </div>
+                    </li>
+                </ul>
             </section>
 
             <section class="card location" aria-labelledby="location-heading">
@@ -117,6 +150,43 @@
 
                 // Show immediately.
                 openModal();
+
+                /* Theme toggle: apply saved theme, or use prefers-color-scheme */
+                const themeToggle = document.getElementById('theme-toggle');
+                const root = document.documentElement;
+                const THEME_KEY = 'site-theme';
+
+                function applyTheme(name) {
+                    if (name === 'dark') {
+                        root.setAttribute('data-theme', 'dark');
+                        themeToggle.textContent = 'Light';
+                        themeToggle.setAttribute('aria-pressed', 'true');
+                    } else {
+                        root.removeAttribute('data-theme');
+                        themeToggle.textContent = 'Dark';
+                        themeToggle.setAttribute('aria-pressed', 'false');
+                    }
+                }
+
+                function initTheme() {
+                    const saved = localStorage.getItem(THEME_KEY);
+                    if (saved) {
+                        applyTheme(saved);
+                        return;
+                    }
+                    // fallback to system preference
+                    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                    applyTheme(prefersDark ? 'dark' : 'light');
+                }
+
+                themeToggle.addEventListener('click', function () {
+                    const isDark = root.getAttribute('data-theme') === 'dark';
+                    const next = isDark ? 'light' : 'dark';
+                    applyTheme(next);
+                    localStorage.setItem(THEME_KEY, next);
+                });
+
+                initTheme();
             });
         </script>
     </body>
