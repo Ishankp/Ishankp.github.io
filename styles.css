@@ -68,6 +68,28 @@ body{
 .card ul,.card ol{margin:0 0 0.75rem 1.25rem}
 .note{color:var(--muted);margin-top:0}
 
+/* Graduation details: remove bullets and increase spacing for readability */
+.card.details ul{
+    list-style:none;
+    padding-left:0;
+    margin:0;
+}
+.card.details li{
+    padding:0.9rem 0;
+    border-bottom:1px solid rgba(0,0,0,0.04);
+    display:flex;
+    gap:0.75rem;
+    align-items:baseline;
+}
+.card.details li:last-child{border-bottom:0}
+.card.details strong{
+    display:inline-block;
+    min-width:10ch;
+    color:var(--accent);
+    font-weight:700;
+}
+.card.details .note{margin-top:0.5rem}
+
 .actions{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem}
 .btn{display:inline-block;padding:0.6rem 1rem;border-radius:8px;text-decoration:none;font-weight:600;transition: background-color 0.2s;}
 
@@ -134,6 +156,28 @@ body{
     .timeline::before{left:1.6rem}
     .timeline li::before{left:1.3rem}
     .tl-content{margin-left:1.9rem}
+}
+
+/* Details timeline: make a more compact variant for the graduation details */
+.details-timeline{padding-left:2.6rem}
+.details-timeline::before{left:1.05rem;opacity:0.12}
+.details-timeline li{padding:0.5rem 0}
+.details-timeline li::before{width:12px;height:12px;left:0.8rem;box-shadow:0 0 0 5px rgba(212,175,55,0.05)}
+.details-timeline .tl-event{font-weight:700;color:var(--accent);font-size:0.98rem}
+.details-timeline .tl-time{color:var(--text-color);font-weight:600;margin-top:0.12rem}
+
+@media (min-width:720px){
+    .details-timeline{padding-left:3rem}
+    .details-timeline::before{left:1.2rem}
+    .details-timeline li::before{left:1rem}
+}
+
+/* Make details more inline on larger screens: event left, value right */
+@media (min-width:540px){
+    .details-timeline li{padding:0.6rem 0}
+    .details-timeline .tl-content{display:flex;justify-content:space-between;align-items:center;margin-left:1.4rem;gap:1rem}
+    .details-timeline .tl-time{margin-top:0}
+    .details-timeline .tl-event{white-space:nowrap;margin-right:1rem}
 }
 
 .footer{margin-top:1rem;text-align:center;color:var(--muted)}
