@@ -138,16 +138,18 @@ body{
 .timeline li::before{
     content:'';
     position:absolute;
-    left:0.95rem;
-    top:calc(50% - 6px);
+    /* center circle on the line */
+    left:1.25rem;
+    top:50%;
     width:12px;
     height:12px;
     border-radius:50%;
     background:var(--accent);
     box-shadow:0 0 0 5px rgba(212,175,55,0.05);
-    transform:translateY(-50%);
+    transform:translate(-50%, -50%);
+    z-index:2;
 }
-.tl-content{margin-left:1.9rem}
+.tl-content{margin-left:3rem}
 .tl-event{font-weight:700;color:var(--accent);}
 .tl-time{font-size:0.9rem;color:var(--text-color);margin-top:0.12rem;font-weight:600}
 /* Link styling for inline timeline items */
@@ -155,10 +157,10 @@ body{
 .tl-time a:hover{color:var(--accent);text-decoration:underline}
 
 @media (min-width:720px){
-        .timeline{padding-left:3.5rem}
-        .timeline::before{left:1.6rem}
-        .timeline li::before{left:1.3rem}
-        .tl-content{margin-left:1.9rem}
+    .timeline{padding-left:3.5rem}
+    .timeline::before{left:1.6rem}
+    .timeline li::before{left:1.6rem}
+    .tl-content{margin-left:3.5rem}
 }
 
 /* Make schedule timeline follow details inline behavior on medium+ screens */
