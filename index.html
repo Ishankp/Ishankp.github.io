@@ -18,9 +18,6 @@
                     <p class="subtitle" style="margin-top: 0.1rem; opacity: 0.8;">Bachelor's Degree of Computer Science </p>
                     <p class="name">Ishan Patel</p>
                 </div>
-                <div class="hero-controls">
-                    <button id="theme-toggle" class="btn outline" aria-pressed="false" aria-label="Toggle dark mode">Dark</button>
-                </div>
             </header>
 
             <section class="card details" aria-labelledby="details-heading">
@@ -180,42 +177,8 @@
                 // Show immediately.
                 openModal();
 
-                /* Theme toggle: apply saved theme, or use prefers-color-scheme */
-                const themeToggle = document.getElementById('theme-toggle');
-                const root = document.documentElement;
-                const THEME_KEY = 'site-theme';
-
-                function applyTheme(name) {
-                    if (name === 'dark') {
-                        root.setAttribute('data-theme', 'dark');
-                        themeToggle.textContent = 'Light';
-                        themeToggle.setAttribute('aria-pressed', 'true');
-                    } else {
-                        root.removeAttribute('data-theme');
-                        themeToggle.textContent = 'Dark';
-                        themeToggle.setAttribute('aria-pressed', 'false');
-                    }
-                }
-
-                function initTheme() {
-                    const saved = localStorage.getItem(THEME_KEY);
-                    if (saved) {
-                        applyTheme(saved);
-                        return;
-                    }
-                    // fallback to system preference
-                    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                    applyTheme(prefersDark ? 'dark' : 'light');
-                }
-
-                themeToggle.addEventListener('click', function () {
-                    const isDark = root.getAttribute('data-theme') === 'dark';
-                    const next = isDark ? 'light' : 'dark';
-                    applyTheme(next);
-                    localStorage.setItem(THEME_KEY, next);
-                });
-
-                initTheme();
+                // Force dark mode by default (dark-only site)
+                document.documentElement.setAttribute('data-theme', 'dark');
             });
         </script>
     </body>
