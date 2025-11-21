@@ -126,7 +126,6 @@ body{
     list-style:none;
     margin:0;
     padding:0;
-    counter-reset: tl-counter;
 }
 .timeline::before{
     content:'';
@@ -146,11 +145,11 @@ body{
     grid-template-columns: var(--tl-gutter) 1fr;
     align-items:center;
     gap:0;
-    counter-increment: tl-counter;
+    /* no counters — decorative bullets only */
 }
 .timeline li::before{
-    /* use counter numbers as bullets */
-    content: counter(tl-counter);
+    /* decorative dot bullet (no number) */
+    content: '';
     position:absolute;
     left:calc(var(--tl-gutter) / 2);
     top:50%;
@@ -161,14 +160,11 @@ body{
     box-shadow:0 0 0 5px var(--tl-circle-shadow);
     transform:translate(-50%, -50%);
     z-index:2;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:calc(var(--tl-circle-size) * 0.55);
-    font-weight:800;
-    color:var(--black);
+    /* decorative only; hide from assistive tech */
+    aria-hidden: true;
 }
 .tl-content{margin:0}
+.tl-event{font-weight:700;color:var(--accent);text-align:left}
 .tl-event{font-weight:700;color:var(--accent);}
 .tl-time{font-size:0.9rem;color:var(--text-color);margin-top:0.12rem;font-weight:600}
 /* Link styling for inline timeline items */
