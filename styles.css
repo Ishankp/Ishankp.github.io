@@ -120,91 +120,72 @@ body{
 }
 .map iframe{width:100%;height:100%;display:block;border:0}
 
-/* Timeline styles for schedule */
-.timeline{
+/* Timeline styles: static left column with absolute-positioned line & bullets
+   - Both .timeline and .details-timeline use the same rules so they line up
+   - Uses --tl-line-left and --tl-circle-size for easy tuning */
+.timeline, .details-timeline{
     position:relative;
     list-style:none;
     margin:0;
     padding:0;
+    /* space on the left to accommodate the vertical line + bullets */
+    padding-left: calc(var(--tl-line-left) + 1.75rem);
 }
-.timeline::before{
-    content:'';
-    position:absolute;
-    left:calc(var(--tl-gutter) / 2);
-    top:0.4rem;
-    bottom:0;
-    width:2px;
-    background:var(--accent);
-    opacity:0.12;
-    z-index:1;
-}
-.timeline li{
-    position:relative;
-    padding:0.35rem 0;
-    display:grid;
-    grid-template-columns: var(--tl-gutter) 1fr;
-    align-items:center;
-    gap:0;
-    /* no counters — decorative bullets only */
-}
-.timeline li::before{
-    /* decorative dot bullet (no number) */
+
+/* Vertical line centered at the left coordinate */
+.timeline::before,
+.details-timeline::before{
     content: '';
-    position:absolute;
-    left:calc(var(--tl-gutter) / 2);
-    top:50%;
-    width:var(--tl-circle-size);
-    height:var(--tl-circle-size);
-    border-radius:50%;
-    background:var(--accent);
-    box-shadow:0 0 0 5px var(--tl-circle-shadow);
-    transform:translate(-50%, -50%);
-    z-index:2;
-    /* decorative only; hide from assistive tech */
-    aria-hidden: true;
+    position: absolute;
+    left: var(--tl-line-left);
+    top: 0.4rem;
+    bottom: 0;
+    width: 2px;
+    background: var(--accent);
+    opacity: 0.12;
+    transform: translateX(-50%);
+    z-index: 1;
 }
+
+.timeline li, .details-timeline li{
+    position:relative;
+    padding:0.5rem 0;
+}
+
+/* Decorative bullet for each item, positioned absolutely so it's always aligned */
+.timeline li::before,
+.details-timeline li::before{
+    content: '';
+    position: absolute;
+    left: var(--tl-line-left);
+    top: 50%;
+    width: var(--tl-circle-size);
+    height: var(--tl-circle-size);
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 5px var(--tl-circle-shadow);
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
 .tl-content{margin:0}
 .tl-event{font-weight:700;color:var(--accent);text-align:left}
-.tl-event{font-weight:700;color:var(--accent);}
 .tl-time{font-size:0.9rem;color:var(--text-color);margin-top:0.12rem;font-weight:600}
-/* Link styling for inline timeline items */
 .tl-time a{color:var(--muted);text-decoration:underline}
 .tl-time a:hover{color:var(--accent);text-decoration:underline}
 
 @media (min-width:720px){
-    :root{ --tl-circle-size:12px; --tl-gutter: calc(var(--tl-circle-size) * 3.5); --tl-content-margin:3.5rem }
-    .timeline::before{left:calc(var(--tl-gutter) / 2)}
-    .timeline li::before{left:calc(var(--tl-gutter) / 2)}
-    .tl-content{margin:0}
+    :root{ --tl-circle-size:12px; --tl-line-left:1.25rem; --tl-content-margin:3.5rem }
 }
 
-/* Make schedule timeline follow details inline behavior on medium+ screens */
 @media (min-width:540px){
-    .timeline .tl-content{display:flex;justify-content:space-between;align-items:center;gap:1rem}
-    .timeline .tl-event{white-space:nowrap}
-    .timeline .tl-time{margin-top:0}
-}
-
-/* Details timeline: make a more compact variant for the graduation details */
-.details-timeline{padding-left:3rem}
-.details-timeline::before{left:1.25rem;opacity:0.12}
-.details-timeline li{padding:0.5rem 0}
-.details-timeline li::before{width:12px;height:12px;left:0.95rem;box-shadow:0 0 0 5px rgba(212,175,55,0.05)}
-.details-timeline .tl-event{font-weight:700;color:var(--accent);font-size:0.98rem}
-.details-timeline .tl-time{color:var(--text-color);font-weight:600;margin-top:0.12rem}
-
-@media (min-width:720px){
-    .details-timeline{padding-left:3.5rem}
-    .details-timeline::before{left:1.6rem}
-    .details-timeline li::before{left:1.3rem}
-}
-
-/* Make details more inline on larger screens: event left, value right */
-@media (min-width:540px){
-    .details-timeline li{padding:0.6rem 0}
-    .details-timeline .tl-content{display:flex;justify-content:space-between;align-items:center;margin-left:1.9rem;gap:1rem}
+    /* keep content inline and aligned on larger screens */
+    .timeline .tl-content,
+    .details-timeline .tl-content{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+    .timeline .tl-event,
+    .details-timeline .tl-event{white-space:nowrap}
+    .timeline .tl-time,
     .details-timeline .tl-time{margin-top:0}
-    .details-timeline .tl-event{white-space:nowrap;margin-right:1rem}
 }
 
 .footer{margin-top:1rem;text-align:center;color:var(--muted)}
