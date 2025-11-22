@@ -20,30 +20,8 @@
                 </div>
             </header>
 
-            <section class="card details" aria-labelledby="details-heading">
-                <h2 id="details-heading">Graduation Details</h2>
-                <ul class="timeline details-timeline" aria-label="Graduation details timeline">
-                    <li>
-                        <div class="tl-content">
-                            <div class="tl-event">Date</div>
-                            <div class="tl-time">December 13, 2025</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tl-content">
-                            <div class="tl-event">Time</div>
-                            <div class="tl-time">1:00 PM — 4:00 PM</div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="tl-content">
-                            <div class="tl-event">Venue</div>
-                            <div class="tl-time"><a href="https://www.google.com/maps/dir/28.4630493,-81.460856/12777+Gemini+Blvd+N,+Orlando,+FL+32816/@28.5346575,-81.4964046,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x88e7685ab12947df:0xc120cab1347e9169!2m2!1d-81.1973124!2d28.607438?entry=ttu&g_ep=EgoyMDI1MTExNi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">12777 Gemini Blvd N, Orlando, FL 32816</a></div>
-                        </div>
-                    </li>
-                </ul>
-                <!-- Action buttons removed as requested -->
-            </section>
+            <!-- Graduation Details card removed as requested. -->
+            <!-- The rest of the page (Brunch, Schedule, Location) remains unchanged. -->
 
             <section class="card location" aria-labelledby="brunch-heading">
                 <h2 id="brunch-heading">Brunch Location</h2>
@@ -67,7 +45,15 @@
 
             <section id="more" class="card schedule" aria-labelledby="schedule-heading">
                 <h2 id="schedule-heading">Schedule</h2>
-                <ul class="timeline" aria-label="Event timeline">
+                                <!--
+                                        Event schedule timeline (same structure as graduation details):
+                                        - .tl-content wraps .tl-event (left) and .tl-time (right).
+                                        - Use the CSS variables in `styles.css` (e.g. --tl-line-left, --tl-circle-size)
+                                            to adjust the fixed line/bullet position and sizes.
+                                        - On wider screens the `.tl-content` elements are laid out with flex to align
+                                            the event text at the left and the time/value at the right.
+                                -->
+                                <ul class="timeline" aria-label="Event timeline">
                     <li>
                         <div class="tl-content">
                             <div class="tl-event">Brunch @ Keke's</div>

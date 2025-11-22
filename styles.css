@@ -169,6 +169,15 @@ body{
 }
 
 .tl-content{margin:0}
+/*
+    Alignment notes:
+    - .tl-content is the container for left/right text within each timeline item.
+    - .tl-event is the left-hand label (e.g. "Brunch @ Keke's") and is left-aligned.
+    - .tl-time is the right-hand value (e.g. "10:45 AM"). On narrow screens it sits below
+        the label; on wider screens `.tl-content` becomes `display:flex` (see the media query
+        at min-width:540px) which pushes `.tl-event` to the left and `.tl-time` to the right.
+    - The fixed left column for the vertical line/bullets is controlled by `--tl-line-left`.
+*/
 .tl-event{font-weight:700;color:var(--accent);text-align:left}
 .tl-time{font-size:0.9rem;color:var(--text-color);margin-top:0.12rem;font-weight:600}
 .tl-time a{color:var(--muted);text-decoration:underline}
